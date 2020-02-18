@@ -16,6 +16,8 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use App\Exports\UsersExport;
 
 
+use App\Imports\UsersImport;
+
 
 
 class UserController extends Controller
@@ -37,7 +39,6 @@ class UserController extends Controller
 
     public function returnUsers(){
 
-
         // convirtiendo coleccion a arreglo
         $user_array = User::select("id", "name", "email")->get()->toArray();
 
@@ -50,6 +51,17 @@ class UserController extends Controller
 
     public function importExcel(Request $request){
         $file = $request->file('file');
+
+
+        $array = Excel::toArray(new UsersImport, $file);
+
+        echo '<pre>';
+        print_r($array);
+
+        //importamos el archivo
+        Excel::import(new UsersImport, $file);
+
+        return back()->with('message', 'Importacion de usuarios completada');
     }
 
 }

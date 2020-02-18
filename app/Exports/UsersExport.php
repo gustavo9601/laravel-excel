@@ -5,6 +5,10 @@ namespace App\Exports;
 use App\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
+
+// Generado con el comando
+// php artisan make:export UsersExport --model=User
+
 class UsersExport implements FromCollection
 {
     /**
@@ -22,7 +26,7 @@ class UsersExport implements FromCollection
         ];
 
         // prepend permite colocar en la primer posicion un arreglo
-        $users->prepend( $cabeceras, 0, 'itemss');
+        $users->prepend( $cabeceras, 0, 'items');
 
         return $users;
 
