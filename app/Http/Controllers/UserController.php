@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Facades\Excel;
 //libreria que permite exporta a csv
 use Maatwebsite\Excel\Concerns\Exportable;
 //Archivo que genera la coleccion de datos
-//hp artisan make:export UsersExport --model=User
+//php artisan make:export UsersExport --model=User
 use App\Exports\UsersExport;
 
 
@@ -51,7 +51,6 @@ class UserController extends Controller
 
     public function importExcel(Request $request){
         $file = $request->file('file');
-
 
         $array = Excel::toArray(new UsersImport, $file);
 
